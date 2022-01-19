@@ -2,6 +2,12 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="agents" v-for="agent in agents" :key="agent.name">
+        <p>sofoasifoiaf</p>
+  <img src= {{ agent.icon }}/>
+
+</div>
+    
   </div>
 </template>
 
@@ -15,4 +21,5 @@ export default {
     HelloWorld
   }
 }
+
 </script>
