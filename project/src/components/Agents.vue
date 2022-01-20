@@ -1,12 +1,16 @@
 <template>
-<div>{{msg}}</div>
+<div class="agent-container">
+    <img src= {{ agent_img }}/>
+    <p> {{ agent_name }}</p>
+</div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Agents',
   props: {
-    msg: String
+    agent_img: String,
+    agent_name: String
   },
 
 }
