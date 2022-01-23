@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="nav">
-      <img class="valorant-logo" src="@/assets/valorant-logo.png" />
-      <img class="cart-img" src="@/assets/shopping.png" />
+      <img class="nav-item valorant-logo" src="@/assets/valorant-logo.png" />
+      <img class="nav-item cart-img" src="@/assets/shopping.png" />
     </div>
     <div class="agents-container">
       <Card
@@ -11,14 +11,16 @@
         :name="agent.name"
         :image="agent.icon"
         :price="agent.price"
+        :addItem="addItem"
       />
     </div>
+    <p>{{ counter }}</p>
   </div>
 </template>
 
 <style>
 .valorant-logo {
-  width: 13%;
+  width: 7%;
   margin-top: 1.5rem;
   margin-left: 3rem;
 }
@@ -31,21 +33,57 @@
 
 .nav {
   border: solid #fd4556 1.5rem;
-  width: 95%;
+  width: 98%;
   height: 10rem;
   background-color: black;
 }
 
 .cart-img {
-  width: 10%;
+  width: 7%;
   float: right;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   margin-right: 1rem;
+}
+
+.cart-img:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+@media(max-width: 1700px){
+  .nav-item {
+    width: 12%;
+  }
+  .valorant-logo {
+    margin-left: 2rem;
+  }
+}
+
+@media(max-width: 1024px){
+  .nav-item {
+      width: 17%;
+    }
+}
+
+@media(max-width: 780px){
+  .nav-item{
+    width: 25%;
+  }
+}
+
+@media(max-width: 630px){
+  .nav-item{
+    width: 20%;
+  }
+  .nav {
+  border: solid #fd4556 1rem;
+  height: 7rem;
+}
 }
 </style>
 
 <script>
 import Card from "@/components/Card.vue";
+import agents from "./assets/agents";
 
 export default {
   name: "App",
@@ -54,99 +92,14 @@ export default {
   },
   data() {
     return {
-      agents: [
-        {
-          icon: "https://media.valorant-api.com/agents/5f8d3a7f-467b-97f3-062c-13acf203c006/displayicon.png",
-          name: "Breach",
-          price: 700,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/displayicon.png",
-          name: "Raze",
-          price: 700,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/22697a3d-45bf-8dd7-4fec-84a9e28c69d7/displayicon.png",
-          name: "Chamber",
-          price: 1100,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/601dbbe7-43ce-be57-2a40-4abd24953621/displayicon.png",
-          name: "KAY/O",
-          price: 700,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/6f2a04ca-43e0-be17-7f36-b3908627744d/displayicon.png",
-          name: "Skye",
-          price: 700,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/117ed9e3-49f3-6512-3ccf-0cada7e3823b/displayicon.png",
-          name: "Cypher",
-          price: 600,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/320b2a48-4d9b-a075-30f1-1f93a9b638fa/displayicon.png",
-          name: "Sova",
-          price: 700,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/1e58de9c-4950-5125-93e9-a0aee9f98746/displayicon.png",
-          name: "Killjoy",
-          price: 600,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/displayicon.png",
-          name: "Viper",
-          price: 600,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/displayicon.png",
-          name: "Phoenix",
-          price: 700,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/41fb69c1-4189-7b37-f117-bcaf1e96f1bf/displayicon.png",
-          name: "Astra",
-          price: 600,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/9f0d8ba9-4140-b941-57d3-a7ad57c6b417/displayicon.png",
-          name: "Brimstone",
-          price: 650,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/bb2a4828-46eb-8cd1-e765-15848195d751/displayicon.png",
-          name: "Neon",
-          price: 700,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/7f94d92c-4234-0a36-9646-3a87eb8b5c89/displayicon.png",
-          name: "Yoru",
-          price: 700,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/displayicon.png",
-          name: "Sage",
-          price: 800,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/a3bfb853-43b2-7238-a4f1-ad90e9e46bcc/displayicon.png",
-          name: "Reyna",
-          price: 700,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/8e253930-4c05-31dd-1b6c-968525494517/displayicon.png",
-          name: "Omen",
-          price: 700,
-        },
-        {
-          icon: "https://media.valorant-api.com/agents/add6443a-41bd-e414-f6ad-e58d267f4e95/displayicon.png",
-          name: "Jett",
-          price: 700,
-        },
-      ],
+      agents: agents.agents,
+      counter: 0
     };
   },
+  methods: {
+    addItem: function(price){
+      this.counter += price;
+    }
+  }
 };
 </script>
