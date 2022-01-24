@@ -36,8 +36,8 @@
             <th></th>
             <th></th>
             <th class="item-column"><router-link class="checkout-button" :to="{
-              name: 'profilePage',
-              params: { id:items }
+              name: 'Checkout',
+              params: { items: items }
             }">Checkout</router-link></th>
           </tr>
         </table>
