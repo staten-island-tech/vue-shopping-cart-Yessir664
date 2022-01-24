@@ -3,7 +3,7 @@
     <h1 class="agent-name">{{ name }}</h1>
     <img class="agent-icon" :src="image" />
     <h2 class="agent-price">${{ price }}</h2>
-    <button v-on:click="addItem(name, price)" class="add-button">
+    <button v-on:click="addItem(name, price, image)" class="add-button">
       Add to Cart
     </button>
   </div>

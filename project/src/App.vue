@@ -7,18 +7,31 @@
         class="nav-item cart-img"
         src="@/assets/shopping.png"
       />
-      <div class="cart-items-contatiner">
-        <table class="item-table">
+      <div v-if="!hidden" class="cart-items-container">
+        <table v-if="items.length > 0" class="item-table">
           <tr class="table-headers">
-            <th>Name</th>
-            <th>Name</th>
-            <th>Name</th>
-            <th>Name</th>
+            <th></th>
+            <th class="item-column">Name</th>
+            <th class="item-column">Price Per</th>
+            <th class="item-column">Quantity</th>
+            <th class="item-column">Total</th>
           </tr>
           <tr class="item-row" v-for="item in items" :key="item.name">
-            <th>{{}}</th>
+            <th class="item-image-column"><img class="cart-item-img" :src="item.image" /> </th>
+            <th class="item-column">{{ item.name }}</th>
+            <th class="item-column">${{ item.price }}</th>
+            <th class="item-column">{{ item.counter }}</th>
+            <th class="item-column">${{ item.total }}</th>
+          </tr>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>${{ grandTotal() }}</th>
           </tr>
         </table>
+        <h1 class="no-items" v-else>No items added</h1>
       </div>
     </div>
     <div class="agents-container">
@@ -52,7 +65,7 @@ export default {
     };
   },
   methods: {
-    addItem: function (name, price) {
+    addItem: function (name, price, image) {
       console.log(name, price);
       let found = false;
       this.counter += price;
@@ -69,9 +82,15 @@ export default {
           counter: 1,
           total: price,
           price: price,
+          image: image
         });
       }
     },
+    grandTotal: function(){
+      let total = 0;
+      this.items.forEach((el) => total += el.total)
+      return total
+    }
   },
 };
 </script>
@@ -82,6 +101,7 @@ export default {
   margin-top: 1.5rem;
   margin-left: 3rem;
 }
+
 .agents-container {
   display: flex;
   flex-wrap: wrap;
@@ -106,6 +126,26 @@ export default {
 .cart-img:hover {
   cursor: pointer;
   transform: scale(1.02);
+}
+
+.cart-items-container{
+  border: solid black 10px;
+  position: absolute;
+  right: 5%;
+  background-color: white;
+  padding: 1rem;
+}
+
+.cart-item-img{
+  width: 5rem;
+}
+
+.item-column{
+  padding: 0.5rem;
+}
+
+.table-headers{
+  font-size: 1.5em;
 }
 @media (max-width: 1700px) {
   .nav-item {
