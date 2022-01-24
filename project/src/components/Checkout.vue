@@ -1,6 +1,8 @@
 <template>
-  <div class="about">
-    <h1>{{ $route.params.items }}</h1>
+  <div class="checkout">
+      <button v-on:click="homeShow()" class="back-button">
+        &lt;&lt;Back
+      </button>
     <table class="item-table">
           <tr class="table-headers">
             <th></th>
@@ -9,7 +11,7 @@
             <th class="item-column">Quantity</th>
             <th class="item-column">Total</th>
           </tr>
-          <tr class="item-row" v-for="item in $route.params.items" :key="item.name">
+          <tr class="item-row" v-for="item in items" :key="item.name">
             <th class="item-image-column"><img class="cart-item-img" :src="item.image" /> </th>
             <th class="item-column">{{ item.name }}</th>
             <th class="item-column">${{ item.price }}</th>
@@ -21,16 +23,14 @@
             <th></th>
             <th></th>
             <th></th>
+            <th class="item-column">${{ grandTotal() }}</th>
           </tr>
           <tr>
             <th></th>
             <th></th>
             <th></th>
             <th></th>
-            <th class="item-column"><router-link class="checkout-button" :to="{
-              name: 'Checkout',
-              params: { items:items }
-            }">Checkout</router-link></th>
+            <th class="item-column"><button class="checkout-button">Checkout</button></th>
           </tr>
         </table>
   </div>
@@ -40,11 +40,36 @@
 
 export default {
   name: "About",
-  data(){
-    return{
-    }
-  },
-  methods:{
+  props: {
+    items: Array,
+    homeShow: Function,
+    grandTotal: Function
   }
 }
 </script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
+  .item-table{
+    margin: auto;
+  }
+
+  .item-column{
+    font-size: 3em;
+  }
+  .cart-item-img{
+    width: 75%;
+  }
+  .back-button{
+    border: none;
+    background-color: transparent;
+    font-size: 3em;
+    font-family: 'Noto Serif', serif;
+  }
+
+  .back-button:hover{
+    cursor: pointer;
+  }
+
+
+</style>

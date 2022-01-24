@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <div class="nav">
+    <div v-if="checkshow === false" class="homepage">
+      <div class="nav">
       <img class="nav-item valorant-logo" src="@/assets/valorant-logo.png" />
       <img
         v-on:click="hidden = !hidden"
@@ -35,10 +36,7 @@
             <th></th>
             <th></th>
             <th></th>
-            <th class="item-column"><router-link class="checkout-button" :to="{
-              name: 'Checkout',
-              params: { items: items }
-            }">Checkout</router-link></th>
+            <th class="item-column"><button v-on:click="checkshow = true" class="checkout-button">Checkout</button></th>
           </tr>
         </table>
         <h1 class="no-items" v-else>No items added</h1>
@@ -54,18 +52,20 @@
         :addItem="addItem"
       />
     </div>
-    <p>{{ items }}</p>
-    <router-view></router-view>
+    </div>
+    <Checkout v-if="checkshow === true" :grandTotal="grandTotal" :items="items" :homeShow="homeShow"/>
   </div>
 </template>
 <script>
 import Card from "@/components/Card.vue";
 import agents from "../assets/agents";
+import Checkout from "@/components/Checkout.vue"
 
 export default {
   name: "Home",
   components: {
     Card,
+    Checkout
   },
   data() {
     return {
@@ -73,6 +73,7 @@ export default {
       counter: 0,
       items: [],
       hidden: true,
+      checkshow: false
     };
   },
   methods: {
@@ -101,6 +102,9 @@ export default {
       let total = 0;
       this.items.forEach((el) => total += el.total)
       return total
+    },
+    homeShow: function(){
+      this.checkshow = false
     }
   },
 };
@@ -167,6 +171,10 @@ export default {
   background-color: #007bff;
   color: white;
   text-decoration: none;
+}
+
+.checkout-button:hover{
+  cursor: pointer;
 }
 
 @media (max-width: 1700px) {
