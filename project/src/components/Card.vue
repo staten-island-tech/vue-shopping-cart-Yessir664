@@ -3,7 +3,9 @@
     <h1 class="agent-name">{{ name }}</h1>
     <img class="agent-icon" :src="image" />
     <h2 class="agent-price">${{ price }}</h2>
-    <button v-on:click="addItem(price)" class="add-button">Add to Cart</button>
+    <button v-on:click="addItem(name, price)" class="add-button">
+      Add to Cart
+    </button>
   </div>
 </template>
 
@@ -14,7 +16,7 @@ export default {
     name: String,
     image: String,
     price: Number,
-    addItem: Function
+    addItem: Function,
   },
 };
 </script>
@@ -30,7 +32,7 @@ export default {
   text-align: center;
 }
 
-.add-button{
+.add-button {
   border: none;
   background-color: black;
   color: white;
@@ -40,17 +42,17 @@ export default {
   border-radius: 12px;
 }
 
-.add-button:hover{
+.add-button:hover {
   cursor: pointer;
 }
 
-@media(max-width: 1024px){
+@media (max-width: 1024px) {
   .agent-icon {
     width: 10rem;
   }
 }
 
-@media(max-width: 780px){
+@media (max-width: 780px) {
   .agent-icon {
     width: 10rem;
   }
@@ -60,7 +62,7 @@ export default {
   }
 }
 
-@media(max-width: 630px){
+@media (max-width: 630px) {
   .agent-icon {
     width: 6rem;
   }

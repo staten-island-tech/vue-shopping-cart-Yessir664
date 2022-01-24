@@ -2,7 +2,24 @@
   <div id="app">
     <div class="nav">
       <img class="nav-item valorant-logo" src="@/assets/valorant-logo.png" />
-      <img class="nav-item cart-img" src="@/assets/shopping.png" />
+      <img
+        v-on:click="hidden = !hidden"
+        class="nav-item cart-img"
+        src="@/assets/shopping.png"
+      />
+      <div class="cart-items-contatiner">
+        <table class="item-table">
+          <tr class="table-headers">
+            <th>Name</th>
+            <th>Name</th>
+            <th>Name</th>
+            <th>Name</th>
+          </tr>
+          <tr class="item-row" v-for="item in items" :key="item.name">
+            <th>{{}}</th>
+          </tr>
+        </table>
+      </div>
     </div>
     <div class="agents-container">
       <Card
@@ -14,9 +31,50 @@
         :addItem="addItem"
       />
     </div>
-    <p>{{ counter }}</p>
+    <p>{{ items }}</p>
   </div>
 </template>
+<script>
+import Card from "@/components/Card.vue";
+import agents from "./assets/agents";
+
+export default {
+  name: "App",
+  components: {
+    Card,
+  },
+  data() {
+    return {
+      agents: agents.agents,
+      counter: 0,
+      items: [],
+      hidden: true,
+    };
+  },
+  methods: {
+    addItem: function (name, price) {
+      console.log(name, price);
+      let found = false;
+      this.counter += price;
+      this.items.forEach(function (el) {
+        if (el.name === name) {
+          found = true;
+          el.counter++;
+          el.total = el.price * el.counter;
+        }
+      });
+      if (found === false) {
+        this.items.push({
+          name: name,
+          counter: 1,
+          total: price,
+          price: price,
+        });
+      }
+    },
+  },
+};
+</script>
 
 <style>
 .valorant-logo {
@@ -49,7 +107,7 @@
   cursor: pointer;
   transform: scale(1.02);
 }
-@media(max-width: 1700px){
+@media (max-width: 1700px) {
   .nav-item {
     width: 12%;
   }
@@ -58,48 +116,25 @@
   }
 }
 
-@media(max-width: 1024px){
+@media (max-width: 1024px) {
   .nav-item {
-      width: 17%;
-    }
+    width: 17%;
+  }
 }
 
-@media(max-width: 780px){
-  .nav-item{
+@media (max-width: 780px) {
+  .nav-item {
     width: 25%;
   }
 }
 
-@media(max-width: 630px){
-  .nav-item{
+@media (max-width: 630px) {
+  .nav-item {
     width: 20%;
   }
   .nav {
-  border: solid #fd4556 1rem;
-  height: 7rem;
-}
+    border: solid #fd4556 1rem;
+    height: 7rem;
+  }
 }
 </style>
-
-<script>
-import Card from "@/components/Card.vue";
-import agents from "./assets/agents";
-
-export default {
-  name: "App",
-  components: {
-    Card,
-  },
-  data() {
-    return {
-      agents: agents.agents,
-      counter: 0
-    };
-  },
-  methods: {
-    addItem: function(price){
-      this.counter += price;
-    }
-  }
-};
-</script>
