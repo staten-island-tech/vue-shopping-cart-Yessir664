@@ -35,7 +35,10 @@
             <th></th>
             <th></th>
             <th></th>
-            <th class="item-column"><router-link class="checkout-button" to="/checkout">Checkout</router-link></th>
+            <th class="item-column"><router-link class="checkout-button" :to="{
+              name: 'profilePage',
+              params: { id:items }
+            }">Checkout</router-link></th>
           </tr>
         </table>
         <h1 class="no-items" v-else>No items added</h1>
@@ -152,9 +155,6 @@ export default {
   padding: 0.5rem;
 }
 
-.item-row{
-  
-}
 .table-headers{
   font-size: 1.5em;
 }
@@ -168,6 +168,7 @@ export default {
   color: white;
   text-decoration: none;
 }
+
 @media (max-width: 1700px) {
   .nav-item {
     width: 12%;
