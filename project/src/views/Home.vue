@@ -23,6 +23,7 @@
             <th class="item-column">${{ item.price }}</th>
             <th class="item-column">{{ item.counter }}</th>
             <th class="item-column">${{ item.total }}</th>
+            <th class="item-column"><button v-on:click="deleteItem(item.name)" class="delete-button">&times;</button></th>
           </tr>
           <tr>
             <th></th>
@@ -105,6 +106,14 @@ export default {
     },
     homeShow: function(){
       this.checkshow = false
+    },
+    deleteItem: function(name){
+      for(let i = 0; i < this.items.length; i++){
+        if(this.items[i].name === name){
+          this.items.splice(i, 1);
+          break
+        }
+      }
     }
   },
 };
@@ -177,6 +186,18 @@ export default {
   cursor: pointer;
 }
 
+.delete-button{
+  border: none;
+  background-color: #d11a2a;
+  border-radius: 100%;
+  color: white;
+  font-size: 1em;
+}
+
+.delete-button:hover{
+  cursor: pointer;
+}
+
 @media (max-width: 1700px) {
   .nav-item {
     width: 12%;
@@ -189,6 +210,29 @@ export default {
 @media (max-width: 1024px) {
   .nav-item {
     width: 17%;
+  }
+  .cart-items-container{
+    border: solid black 10px;
+    position: absolute;
+    right: 3%;
+    background-color: white;
+    padding: 0.5rem;
+  }
+
+  .cart-item-img{
+    width: 4rem;
+  }
+
+  .item-column{
+    padding: 0.2rem;
+  }
+
+  .table-headers{
+    font-size: 1.3em;
+  }
+
+  .checkout-button{
+    margin-top: 1rem;
   }
 }
 

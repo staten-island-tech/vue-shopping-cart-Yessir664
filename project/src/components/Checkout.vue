@@ -25,13 +25,6 @@
             <th></th>
             <th class="item-column">${{ grandTotal() }}</th>
           </tr>
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th class="item-column"><button class="checkout-button">Checkout</button></th>
-          </tr>
         </table>
   </div>
 </template>
@@ -55,10 +48,11 @@ export default {
   }
 
   .item-column{
-    font-size: 3em;
+    font-size: 1.5em;
+    padding: 2rem;
   }
   .cart-item-img{
-    width: 75%;
+    width: 8rem;
   }
   .back-button{
     border: none;
