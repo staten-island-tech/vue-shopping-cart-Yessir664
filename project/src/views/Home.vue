@@ -2,7 +2,8 @@
   <div id="app">
     <div v-if="checkshow === false" class="homepage">
       <div class="nav">
-      <img class="nav-item valorant-logo" src="@/assets/valorant-logo.png" />
+      <img class="nav-item valorant-logo" v-on:click="roleClick(`all`)" src="@/assets/valorant-logo.png" />
+      <button v-for="role in roles" :key="role" v-on:click="roleClick(role)" class="role-button">{{ role }}</button>
       <img
         v-on:click="hidden = !hidden"
         class="nav-item cart-img"
@@ -23,7 +24,7 @@
             <th class="item-column">${{ item.price }}</th>
             <th class="item-column">{{ item.counter }}</th>
             <th class="item-column">${{ item.total }}</th>
-            <th class="item-column"><button v-on:click="deleteItem(item.name)" class="delete-button">&times;</button></th>
+            <th class="delete-column item-column"><button v-on:click="deleteItem(item.name)" class="delete-button">&times;</button></th>
           </tr>
           <tr>
             <th></th>
@@ -45,7 +46,7 @@
     </div>
     <div class="agents-container">
       <Card
-        v-for="agent in agents"
+        v-for="agent in agentDisplay"
         :key="agent.name"
         :name="agent.name"
         :image="agent.icon"
@@ -74,7 +75,14 @@ export default {
       counter: 0,
       items: [],
       hidden: true,
-      checkshow: false
+      checkshow: false,
+      roles: [
+        "Duelist",
+        "Controller",
+        "Initator",
+        "Sentinel"
+      ],
+      agentDisplay: agents.agents,
     };
   },
   methods: {
@@ -114,16 +122,31 @@ export default {
           break
         }
       }
+    },
+    roleClick: function(role){
+      if(role === "all"){
+        this.agentDisplay = this.agents;
+        return
+      }
+      this.agentDisplay = this.agents.filter((el) => el.role === role);
+      
     }
   },
 };
 </script>
 
 <style>
+button{
+  cursor: pointer;
+}
+
 .valorant-logo {
-  width: 7%;
   margin-top: 1.5rem;
   margin-left: 3rem;
+}
+
+.valorant-logo:hover{
+  cursor: pointer;
 }
 
 .agents-container {
@@ -134,14 +157,15 @@ export default {
 }
 
 .nav {
+  display: flex;
   border: solid #fd4556 1.5rem;
   width: 98%;
   height: 10rem;
   background-color: black;
+  justify-content: space-between;
 }
 
 .cart-img {
-  width: 7%;
   float: right;
   margin-top: 0.5rem;
   margin-right: 1rem;
@@ -182,10 +206,6 @@ export default {
   text-decoration: none;
 }
 
-.checkout-button:hover{
-  cursor: pointer;
-}
-
 .delete-button{
   border: none;
   background-color: #d11a2a;
@@ -194,10 +214,16 @@ export default {
   font-size: 1em;
 }
 
-.delete-button:hover{
-  cursor: pointer;
+.delete-column{
+  padding: 0;
 }
 
+.role-button{
+  border: none;
+  background-color: transparent;
+  color: #ede9e2;
+  
+}
 @media (max-width: 1700px) {
   .nav-item {
     width: 12%;
