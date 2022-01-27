@@ -2,13 +2,29 @@
   <div id="app">
     <div v-if="checkshow === false" class="homepage">
       <div class="nav">
-      <img class="nav-item valorant-logo" v-on:click="roleClick(`all`)" src="@/assets/valorant-logo.png" />
-      <button v-for="role in roles" :key="role" v-on:click="roleClick(role)" class="role-button">{{ role }}</button>
-      <img
-        v-on:click="hidden = !hidden"
-        class="nav-item cart-img"
-        src="@/assets/shopping.png"
-      />
+        <div class="nav-left">
+          <img class="nav-item valorant-logo" v-on:click="roleClick(`all`)" src="@/assets/valorant-logo.png" />
+          <div class="role-buttons">
+            <div class="nav-role">
+              <div
+            v-for="role in roles" 
+            :key="role" 
+            v-on:click="roleClick(role)" 
+            class="role-div"
+            >
+            <button class="role-button">{{ role }}</button>
+            <strong class="line-break">|</strong>
+            </div>
+            </div>
+            
+            
+          </div>
+        </div>
+        <img
+          v-on:click="hidden = !hidden"
+          class="nav-item cart-img"
+          src="@/assets/shopping.png"
+        />
       <div v-if="!hidden" class="cart-items-container">
         <table v-if="items.length > 0" class="item-table">
           <tr class="table-headers">
@@ -136,6 +152,11 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: Valorant;
+    src: url(../assets/Valorant-Font.ttf);
+}
+
 button{
   cursor: pointer;
 }
@@ -165,6 +186,23 @@ button{
   justify-content: space-between;
 }
 
+.nav-left{
+  display: flex;
+}
+.nav-role{
+  display: flex;
+}
+.role-buttons{
+  margin-top: 4rem;
+  
+}
+.role-div{
+  display: flex;
+}
+.line-break{
+  color: #fd4556;
+  font-size: 2em;
+}
 .cart-img {
   float: right;
   margin-top: 0.5rem;
