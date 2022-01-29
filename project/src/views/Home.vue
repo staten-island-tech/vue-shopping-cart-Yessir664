@@ -13,7 +13,6 @@
             class="role-div"
             >
             <button class="role-button">{{ role }}</button>
-            <strong class="line-break">|</strong>
             </div>
             </div>
             
@@ -194,7 +193,16 @@ button{
 }
 .role-buttons{
   margin-top: 4rem;
-  
+}
+
+.role-button{
+  background-color: transparent;
+  color: #ede9e2;
+  font-family: Valorant;
+  font-size: 2em;
+  border: none;
+  border-right: 5px solid #fd4556;
+  padding-left: 1rem;
 }
 .role-div{
   display: flex;
@@ -220,6 +228,7 @@ button{
   right: 5%;
   background-color: white;
   padding: 1rem;
+  top: 10rem;
 }
 
 .cart-item-img{
@@ -256,32 +265,13 @@ button{
   padding: 0;
 }
 
-.role-button{
-  border: none;
-  background-color: transparent;
-  color: #ede9e2;
-  
-}
 @media (max-width: 1700px) {
-  .nav-item {
-    width: 12%;
-  }
   .valorant-logo {
     margin-left: 2rem;
   }
 }
 
 @media (max-width: 1024px) {
-  .nav-item {
-    width: 17%;
-  }
-  .cart-items-container{
-    border: solid black 10px;
-    position: absolute;
-    right: 3%;
-    background-color: white;
-    padding: 0.5rem;
-  }
 
   .cart-item-img{
     width: 4rem;
@@ -298,21 +288,54 @@ button{
   .checkout-button{
     margin-top: 1rem;
   }
+  
 }
 
 @media (max-width: 780px) {
-  .nav-item {
-    width: 25%;
+  .cart-items-container{
+    top: 7rem;
   }
-}
 
-@media (max-width: 630px) {
-  .nav-item {
-    width: 20%;
+  .item-column{
+    padding: 0;
+    padding-right: 0.2rem;
+    font-size: 0.6em;
+  }
+  .cart-item-img{
+    width: 3rem;
   }
   .nav {
     border: solid #fd4556 1rem;
     height: 7rem;
+  }
+  .delete-button{
+    text-align: center;
+    width: 15px;
+    height: 15px;
+  }
+
+  .role-buttons{
+    margin-top: 2.5rem;
+  }
+
+  .checkout-button{
+    border-radius: 7px;
+    font-size: 1em;
+    padding: 0.3rem;
+  }
+}
+
+@media (max-width: 630px) {
+  .nav {
+    border: solid #fd4556 1rem;
+    height: 7rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .nav-item{
+    height: 3rem;
+    margin-top: 2rem;
   }
 }
 </style>
