@@ -58,7 +58,6 @@ export default {
   }
   .agent-card {
     margin: 15px;
-    text-align: center;
   }
 }
 
@@ -66,8 +65,19 @@ export default {
   .agent-icon {
     width: 6rem;
   }
-  .agent-card {
-    text-align: center;
+}
+
+@media (max-width: 576px) {
+  .agent-icon {
+    width: 4rem;
+  }
+
+  .add-button {
+    font-size: 0.7em;
+    padding: 0.8rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border-radius: 12px;
   }
 }
 </style>

@@ -201,8 +201,9 @@ button{
   font-family: Valorant;
   font-size: 2em;
   border: none;
-  border-right: 5px solid #fd4556;
-  padding-left: 1rem;
+  border-right: 3px solid #fd4556;
+  padding-left: 0.5rem;
+  padding-right: 0.8rem;
 }
 .role-div{
   display: flex;
@@ -269,6 +270,10 @@ button{
   .valorant-logo {
     margin-left: 2rem;
   }
+
+  .role-button{
+    font-size: 1.5em;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -289,6 +294,13 @@ button{
     margin-top: 1rem;
   }
   
+  .role-button{
+    font-size: 1em;
+  }
+  .nav {
+    border: solid #fd4556 1rem;
+    height: 7rem;
+  }
 }
 
 @media (max-width: 780px) {
@@ -304,10 +316,6 @@ button{
   .cart-item-img{
     width: 3rem;
   }
-  .nav {
-    border: solid #fd4556 1rem;
-    height: 7rem;
-  }
   .delete-button{
     text-align: center;
     width: 15px;
@@ -315,13 +323,19 @@ button{
   }
 
   .role-buttons{
-    margin-top: 2.5rem;
+    margin-top: 3.5rem;
   }
-
+  .role-button{
+    font-size: 0.7em;
+  }
   .checkout-button{
     border-radius: 7px;
     font-size: 1em;
     padding: 0.3rem;
+  }
+
+  .nav-item{
+    height: 5rem;
   }
 }
 
@@ -329,6 +343,16 @@ button{
   .nav {
     border: solid #fd4556 1rem;
     height: 7rem;
+  }
+  .role-button{
+    border-right: 2px solid #fd4556;
+  }
+  .nav-item{
+    height: 4rem;
+    margin-top: 2rem;
+  }
+  .agents-container {
+    margin: 10px;
   }
 }
 
