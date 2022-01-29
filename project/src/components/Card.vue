@@ -72,11 +72,15 @@ export default {
     width: 4rem;
   }
 
+  .agent-card{
+    font-size: 0.6em;
+  }
+
   .add-button {
-    font-size: 0.7em;
+    font-size: 1em;
     padding: 0.8rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
     border-radius: 12px;
   }
 }

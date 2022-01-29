@@ -361,5 +361,19 @@ button{
     height: 3rem;
     margin-top: 2rem;
   }
+
+  .valorant-logo{
+    margin-left: 0.5rem;
+  }
+
+}
+
+@media (max-width: 475px) {
+  .role-button{
+    padding: 0;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    font-size: 0.6em;
+  }
 }
 </style>
