@@ -182,7 +182,7 @@ button{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin: 20px;
+  margin: 2rem;
 }
 
 .nav {
@@ -295,6 +295,10 @@ button{
     padding: 0.2rem;
   }
 
+  .valorant-logo{
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
   .cart-img{
     margin-top: 1rem;
     margin-right: 2rem;
@@ -321,6 +325,9 @@ button{
 }
 
 @media (max-width: 780px) {
+  .agents-container{
+    margin: 1rem;
+  }
   .cart-items-container{
     top: 7rem;
   }
@@ -359,7 +366,7 @@ button{
   }
 }
 
-@media (max-width: 630px) {
+@media (max-width: 640px) {
   .nav {
     border: solid #fd4556 1rem;
     height: 7rem;
