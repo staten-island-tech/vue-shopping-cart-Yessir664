@@ -30,6 +30,12 @@ export default {
 .agent-card {
   margin: 40px;
   text-align: center;
+  background-color: white;
+  padding: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  border-radius: 1rem;
+  box-shadow: crimson 0 0 7 ;
 }
 
 .add-button {

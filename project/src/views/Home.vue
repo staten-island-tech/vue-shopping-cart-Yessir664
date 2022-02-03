@@ -156,13 +156,22 @@ export default {
     src: url(../assets/Valorant-Font.ttf);
 }
 
+body{
+  background: url("../assets/agent-background.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 button{
   cursor: pointer;
 }
 
 .valorant-logo {
-  margin-top: 1.5rem;
-  margin-left: 3rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  height: 6rem;
 }
 
 .valorant-logo:hover{
@@ -195,6 +204,7 @@ button{
   margin-top: 4rem;
 }
 
+
 .role-button{
   background-color: transparent;
   color: #ede9e2;
@@ -214,8 +224,9 @@ button{
 }
 .cart-img {
   float: right;
-  margin-top: 0.5rem;
-  margin-right: 1rem;
+  height: 5rem;
+  margin-top: 2.5rem;
+  margin-right: 3rem;
 }
 
 .cart-img:hover {
@@ -277,13 +288,16 @@ button{
 }
 
 @media (max-width: 1024px) {
-
-  .cart-item-img{
-    width: 4rem;
+  .role-buttons{
+    margin-top: 3rem;
   }
-
   .item-column{
     padding: 0.2rem;
+  }
+
+  .cart-img{
+    margin-top: 1rem;
+    margin-right: 2rem;
   }
 
   .table-headers{
@@ -301,6 +315,9 @@ button{
     border: solid #fd4556 1rem;
     height: 7rem;
   }
+  .nav-item{
+    height: 5rem;
+  }
 }
 
 @media (max-width: 780px) {
@@ -313,8 +330,11 @@ button{
     padding-right: 0.2rem;
     font-size: 0.6em;
   }
-  .cart-item-img{
-    width: 3rem;
+  .cart-img {
+    float: right;
+    height: 3rem;
+    margin-top: 1.5rem;
+    margin-right: 1.5rem;
   }
   .delete-button{
     text-align: center;
@@ -335,7 +355,7 @@ button{
   }
 
   .nav-item{
-    height: 5rem;
+    height: 4rem;
   }
 }
 
@@ -374,6 +394,20 @@ button{
     padding-left: 0.3rem;
     padding-right: 0.3rem;
     font-size: 0.6em;
+  }
+}
+
+@media (max-width: 410px) {
+  .role-button{
+    padding: 0;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    font-size: 0.6em;
+  }
+  .cart-img{
+    height: 2rem;
+    margin-right: 1rem;
+    margin-top: 2.5rem;
   }
 }
 </style>

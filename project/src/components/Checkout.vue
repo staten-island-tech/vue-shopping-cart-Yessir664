@@ -45,6 +45,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
   .item-table{
     margin: auto;
+    color: white;
   }
 
   .item-column{
@@ -59,6 +60,7 @@ export default {
     background-color: transparent;
     font-size: 3em;
     font-family: 'Noto Serif', serif;
+    color: white;
   }
 
   .back-button:hover{
