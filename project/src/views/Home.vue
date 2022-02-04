@@ -45,8 +45,8 @@
     </div>
     <div class="agents-container">
       <Card
-        v-for="agent in agents"
-        :key="agent.name"
+        v-for="agent in agentDisplay"
+        v-bind:key="agent.name"
         :name="agent.name"
         :image="agent.icon"
         :price="agent.price"
@@ -59,8 +59,8 @@
 </template>
 <script>
 import Card from "@/components/Card.vue";
-import agents from "../assets/agents";
 import Checkout from "@/components/Checkout.vue"
+import agents from "../assets/agents";
 
 export default {
   name: "Home",
@@ -70,11 +70,18 @@ export default {
   },
   data() {
     return {
-      agents: agents.agents,
+      agents: [],
       counter: 0,
       items: [],
       hidden: true,
-      checkshow: false
+      checkshow: false,
+      roles: [
+        "Duelist",
+        "Controller",
+        "Initator",
+        "Sentinel"
+      ],
+      agentDisplay: [],
     };
   },
   methods: {
@@ -114,7 +121,40 @@ export default {
           break
         }
       }
-    }
+    },
+    roleClick: function(role){
+      if(role === "all"){
+        this.agentDisplay = this.agents;
+        return
+      }
+      this.agentDisplay = this.agents.filter((el) => el.role === role);
+      
+    },
+    async getData() {
+      try {
+        let response = await fetch("https://valorant-api.com/v1/agents");
+        let data = await response.json()
+        console.log(data.data)
+        this.agents = data.data.map(function(el){
+          const price = agents.agents.filter((agent) => agent.name === el.displayName)[0].price;
+          return {
+            name: el.displayName,
+            icon: el.displayIcon,
+            price: price,
+            abilities: el.abilities,
+            portrait: el.fullPortrait,
+            role: el.role,
+          }
+        })
+        this.agentDisplay = this.agents
+        console.log(this.agents)
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  created() {
+    this.getData();
   },
 };
 </script>
@@ -222,9 +262,9 @@ export default {
   .cart-item-img{
     width: 4rem;
   }
-
-  .item-column{
-    padding: 0.2rem;
+  .cart-img{
+    margin-top: 1rem;
+    margin-right: 1.5rem;
   }
 
   .table-headers{
@@ -233,6 +273,18 @@ export default {
 
   .checkout-button{
     margin-top: 1rem;
+  }
+  
+  .role-button{
+    font-size: 1em;
+  }
+  .nav {
+    border: solid #fd4556 1rem;
+    height: 7rem;
+  }
+  .nav-item{
+    margin-top: 1.5rem;
+    height: 4rem;
   }
 }
 
@@ -249,6 +301,51 @@ export default {
   .nav {
     border: solid #fd4556 1rem;
     height: 7rem;
+  }
+  .role-button{
+    border-right: 2px solid #fd4556;
+  }
+  .nav-item{
+    height: 3.5rem;
+    margin-top: 1.75rem;
+  }
+  .agents-container {
+    margin: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .nav-item{
+    height: 3rem;
+    margin-top: 2rem;
+  }
+
+  .valorant-logo{
+    margin-left: 0.5rem;
+  }
+
+}
+
+@media (max-width: 475px) {
+  .role-button{
+    padding: 0;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    font-size: 0.6em;
+  }
+}
+
+@media (max-width: 410px) {
+  .role-button{
+    padding: 0;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    font-size: 0.6em;
+  }
+  .cart-img{
+    height: 2rem;
+    margin-right: 1rem;
+    margin-top: 2.5rem;
   }
 }
 </style>
