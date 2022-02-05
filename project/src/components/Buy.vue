@@ -10,13 +10,18 @@
           <div class="agent-name">{{ agent.name }}</div>
           <div class="buttons">
               <button v-on:click="infoClick()" class="button"><img class="button-img" :src="agent.role.displayIcon"></button>
-              <button  class="button" v-for="ability in agent.abilities" :key="ability" v-on:click="abilClick(ability)"><img class="button-img" :src="ability.displayIcon"></button>
+              <button  class="button" v-for="ability in agent.abilities" :key="ability.displayName" v-on:click="abilClick(ability)"><img class="button-img" :src="ability.displayIcon"></button>
           </div>
           <div class="agent-info-display">
               <p v-if="agentDescription === true" class="agent-description">{{ agent.description }}</p>
               <p :key="abilName" class="abil-name">{{ abilName }}</p>
               <p :key=" displayInfo">{{ displayInfo }}</p>
           </div>
+        </div>
+        <div class="cart-add">
+            <div class="buy-area">
+                <button class="add-button">Add to Cart</button>
+            </div>
         </div>
     </div>
     
@@ -79,6 +84,15 @@ h5 {
   font-size: var(--h5);
 }
 
+.add-button {
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-radius: 12px;
+}
 
 .back-button{
     border: none;
@@ -100,16 +114,20 @@ h5 {
   display: flex;
 }
 .agent-img {
-  width: 50%;
-  height: 50%;
+  width: 40%;
+  height: 40%;
+  margin-top: 4rem;
 }
 
+.cart-add{
+    width: 33%;
+}
 .buttons {
   display: flex;
 }
 
 .agent-abilities {
-  width: 50%;
+  width: 33%;
   margin-left: 0px;
 }
 
@@ -141,10 +159,26 @@ h5 {
   font-size: 3em;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
+
+.buy-area{
+    border: solid white 1px;
+    border-radius: 12px;
+    background-color: white;
+}
+
+
 @media (max-width: 1024px) {
   .agent-img {
-    width: 70%;
+    width: 40%;
+    margin-top: 10rem;
   }
+  .agent-abilities{
+      width: 33%;
+      font-size: 0.75em;
+  }
+  .button-img {
+    width: 2.5rem;
+    }
 }
 @media (max-width: 650px) {
   .agent-container {
@@ -152,6 +186,7 @@ h5 {
   }
   .agent-img {
     width: 100%;
+    margin-top: 4rem;
   }
   .button-img {
     width: 2rem;

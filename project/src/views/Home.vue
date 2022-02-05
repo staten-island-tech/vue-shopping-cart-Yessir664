@@ -178,10 +178,8 @@ export default {
       }
     },
     buyAgentClick: function(name){
-      console.log(name)
       this.buyAgent = this.agents.filter(el => el.name === name)[0]
       this.pageShow = "buy"
-      console.log(this.buyAgent)
     }
   },
   created() {
@@ -221,7 +219,7 @@ button{
 .agents-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   margin: 2rem;
 }
 
@@ -433,7 +431,10 @@ button{
   .valorant-logo{
     margin-left: 0.5rem;
   }
-
+  
+  .agents-container {
+    margin: 0;
+  }
 }
 
 @media (max-width: 475px) {
