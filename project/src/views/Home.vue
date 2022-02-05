@@ -2,12 +2,28 @@
   <div id="app">
     <div v-if="checkshow === false" class="homepage">
       <div class="nav">
-      <img class="nav-item valorant-logo" src="@/assets/valorant-logo.png" />
-      <img
-        v-on:click="hidden = !hidden"
-        class="nav-item cart-img"
-        src="@/assets/shopping.png"
-      />
+        <div class="nav-left">
+          <img class="nav-item valorant-logo" v-on:click="roleClick(`all`)" src="@/assets/valorant-logo.png" />
+          <div class="role-buttons">
+            <div class="nav-role">
+              <div
+            v-for="role in roles" 
+            :key="role" 
+            v-on:click="roleClick(role)" 
+            class="role-div"
+            >
+            <button class="role-button">{{ role }}</button>
+            </div>
+            </div>
+            
+            
+          </div>
+        </div>
+        <img
+          v-on:click="hidden = !hidden"
+          class="nav-item cart-img"
+          src="@/assets/shopping.png"
+        />
       <div v-if="!hidden" class="cart-items-container">
         <table v-if="items.length > 0" class="item-table">
           <tr class="table-headers">
@@ -23,7 +39,7 @@
             <th class="item-column">${{ item.price }}</th>
             <th class="item-column">{{ item.counter }}</th>
             <th class="item-column">${{ item.total }}</th>
-            <th class="item-column"><button v-on:click="deleteItem(item.name)" class="delete-button">&times;</button></th>
+            <th class="delete-column item-column"><button v-on:click="deleteItem(item.name)" class="delete-button">&times;</button></th>
           </tr>
           <tr>
             <th></th>
@@ -46,7 +62,7 @@
     <div class="agents-container">
       <Card
         v-for="agent in agentDisplay"
-        v-bind:key="agent.name"
+        :key="agent.name"
         :name="agent.name"
         :image="agent.icon"
         :price="agent.price"
@@ -162,31 +178,82 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: Valorant;
+    src: url(../assets/Valorant-Font.ttf);
+}
+
+body{
+  background: url("../assets/agent-background.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+button{
+  cursor: pointer;
+}
+
 .valorant-logo {
-  width: 7%;
-  margin-top: 1.5rem;
-  margin-left: 3rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  height: 6rem;
+}
+
+.valorant-logo:hover{
+  cursor: pointer;
 }
 
 .agents-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin: 20px;
+  margin: 2rem;
 }
 
 .nav {
+  display: flex;
   border: solid #fd4556 1.5rem;
   width: 98%;
   height: 10rem;
   background-color: black;
+  justify-content: space-between;
 }
 
+.nav-left{
+  display: flex;
+}
+.nav-role{
+  display: flex;
+}
+.role-buttons{
+  margin-top: 4rem;
+}
+
+
+.role-button{
+  background-color: transparent;
+  color: #ede9e2;
+  font-family: Valorant;
+  font-size: 2em;
+  border: none;
+  border-right: 3px solid #fd4556;
+  padding-left: 0.5rem;
+  padding-right: 0.8rem;
+}
+.role-div{
+  display: flex;
+}
+.line-break{
+  color: #fd4556;
+  font-size: 2em;
+}
 .cart-img {
-  width: 7%;
   float: right;
-  margin-top: 0.5rem;
-  margin-right: 1rem;
+  height: 5rem;
+  margin-top: 2.5rem;
+  margin-right: 3rem;
 }
 
 .cart-img:hover {
@@ -200,6 +267,7 @@ export default {
   right: 5%;
   background-color: white;
   padding: 1rem;
+  top: 10rem;
 }
 
 .cart-item-img{
@@ -224,10 +292,6 @@ export default {
   text-decoration: none;
 }
 
-.checkout-button:hover{
-  cursor: pointer;
-}
-
 .delete-button{
   border: none;
   background-color: #d11a2a;
@@ -236,33 +300,31 @@ export default {
   font-size: 1em;
 }
 
-.delete-button:hover{
-  cursor: pointer;
+.delete-column{
+  padding: 0;
 }
 
 @media (max-width: 1700px) {
-  .nav-item {
-    width: 12%;
-  }
   .valorant-logo {
     margin-left: 2rem;
+  }
+
+  .role-button{
+    font-size: 1.5em;
   }
 }
 
 @media (max-width: 1024px) {
-  .nav-item {
-    width: 17%;
+  .role-buttons{
+    margin-top: 3rem;
   }
-  .cart-items-container{
-    border: solid black 10px;
-    position: absolute;
-    right: 3%;
-    background-color: white;
-    padding: 0.5rem;
+  .item-column{
+    padding: 0.2rem;
   }
 
-  .cart-item-img{
-    width: 4rem;
+  .valorant-logo{
+    margin-top: 1rem;
+    margin-left: 1rem;
   }
   .cart-img{
     margin-top: 1rem;
@@ -291,15 +353,48 @@ export default {
 }
 
 @media (max-width: 780px) {
-  .nav-item {
-    width: 25%;
+  .agents-container{
+    margin: 1rem;
+  }
+  .cart-items-container{
+    top: 7rem;
+  }
+
+  .item-column{
+    padding: 0;
+    padding-right: 0.2rem;
+    font-size: 0.6em;
+  }
+  .cart-img {
+    float: right;
+    height: 3rem;
+    margin-top: 1.5rem;
+    margin-right: 1.5rem;
+  }
+  .delete-button{
+    text-align: center;
+    width: 15px;
+    height: 15px;
+  }
+
+  .role-buttons{
+    margin-top: 3.5rem;
+  }
+  .role-button{
+    font-size: 0.7em;
+  }
+  .checkout-button{
+    border-radius: 7px;
+    font-size: 1em;
+    padding: 0.3rem;
+  }
+
+  .nav-item{
+    height: 4rem;
   }
 }
 
-@media (max-width: 630px) {
-  .nav-item {
-    width: 20%;
-  }
+@media (max-width: 640px) {
   .nav {
     border: solid #fd4556 1rem;
     height: 7rem;

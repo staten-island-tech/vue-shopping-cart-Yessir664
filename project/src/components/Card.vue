@@ -30,6 +30,12 @@ export default {
 .agent-card {
   margin: 40px;
   text-align: center;
+  background-color: white;
+  padding: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  border-radius: 1rem;
+  box-shadow: crimson 0 0 7 ;
 }
 
 .add-button {
@@ -46,19 +52,39 @@ export default {
   cursor: pointer;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1325px) {
+  .agent-card{
+    padding: 2rem;
+    margin: 1.5rem;
+  }
+}
+@media (max-width: 1100px) {
   .agent-icon {
     width: 10rem;
   }
+  .agent-card{
+    padding: 1.5rem;
+    margin: 1rem;
+  }
 }
 
-@media (max-width: 780px) {
+@media (max-width: 800px) {
   .agent-icon {
     width: 10rem;
   }
   .agent-card {
-    margin: 15px;
-    text-align: center;
+    margin: 1rem;
+  }
+
+  .agent-icon{
+    width: 7rem;
+  }
+
+  .add-button{
+    font-size: 0.75em;
+    padding: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 }
 
@@ -66,8 +92,26 @@ export default {
   .agent-icon {
     width: 6rem;
   }
-  .agent-card {
-    text-align: center;
+  .agent-card{
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .agent-icon {
+    width: 4rem;
+  }
+
+  .agent-card{
+    font-size: 0.6em;
+  }
+
+  .add-button {
+    font-size: 0.7em;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 12px;
   }
 }
 </style>
