@@ -1,5 +1,5 @@
 <template>
-  <div class="agent-card">
+  <div v-on:click="buyAgentClick(name)" class="agent-card">
     <h1 class="agent-name">{{ name }}</h1>
     <img class="agent-icon" :src="image" />
     <h2 class="agent-price">${{ price }}</h2>
@@ -17,6 +17,7 @@ export default {
     image: String,
     price: Number,
     addItem: Function,
+    buyAgentClick: Function,
   },
 };
 </script>
@@ -35,7 +36,6 @@ export default {
   padding-left: 3rem;
   padding-right: 3rem;
   border-radius: 1rem;
-  box-shadow: crimson 0 0 7 ;
 }
 
 .add-button {
@@ -48,7 +48,7 @@ export default {
   border-radius: 12px;
 }
 
-.add-button:hover {
+.agent-card:hover {
   cursor: pointer;
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="checkshow === false" class="homepage">
+    <div v-if="pageShow === `home`" class="homepage">
       <div class="nav">
         <div class="nav-left">
           <img class="nav-item valorant-logo" v-on:click="roleClick(`all`)" src="@/assets/valorant-logo.png" />
@@ -53,7 +53,7 @@
             <th></th>
             <th></th>
             <th></th>
-            <th class="item-column"><button v-on:click="checkshow = true" class="checkout-button">Checkout</button></th>
+            <th class="item-column"><button v-on:click="pageShow = `check`" class="checkout-button">Checkout</button></th>
           </tr>
         </table>
         <h1 class="no-items" v-else>No items added</h1>
@@ -67,22 +67,27 @@
         :image="agent.icon"
         :price="agent.price"
         :addItem="addItem"
+        :buyAgentClick="buyAgentClick"
+        :homeShow="homeShow"
       />
     </div>
     </div>
-    <Checkout v-if="checkshow === true" :grandTotal="grandTotal" :items="items" :homeShow="homeShow"/>
+    <Checkout v-if="pageShow === `check`" :grandTotal="grandTotal" :items="items" :homeShow="homeShow"/>
+    <Buy v-if="pageShow === `buy`" :key="buyAgent" :homeShow="homeShow" :agent="buyAgent"/>
   </div>
 </template>
 <script>
 import Card from "@/components/Card.vue";
 import Checkout from "@/components/Checkout.vue"
 import agents from "../assets/agents";
+import Buy from "@/components/Buy.vue"
 
 export default {
   name: "Home",
   components: {
     Card,
-    Checkout
+    Checkout,
+    Buy
   },
   data() {
     return {
@@ -90,14 +95,15 @@ export default {
       counter: 0,
       items: [],
       hidden: true,
-      checkshow: false,
+      pageShow: "home",
       roles: [
         "Duelist",
         "Controller",
-        "Initator",
+        "Initiator",
         "Sentinel"
       ],
       agentDisplay: [],
+      buyAgent: {},
     };
   },
   methods: {
@@ -128,7 +134,7 @@ export default {
       return total
     },
     homeShow: function(){
-      this.checkshow = false
+      this.pageShow = "home"
     },
     deleteItem: function(name){
       for(let i = 0; i < this.items.length; i++){
@@ -143,7 +149,7 @@ export default {
         this.agentDisplay = this.agents;
         return
       }
-      this.agentDisplay = this.agents.filter((el) => el.role === role);
+      this.agentDisplay = this.agents.filter((el) => el.role.displayName === role);
       
     },
     async getData() {
@@ -162,6 +168,7 @@ export default {
             abilities: el.abilities,
             portrait: el.fullPortrait,
             role: el.role,
+            description: el.description
           }
         })
         this.agentDisplay = this.agents
@@ -170,6 +177,12 @@ export default {
         console.log(error);
       }
     },
+    buyAgentClick: function(name){
+      console.log(name)
+      this.buyAgent = this.agents.filter(el => el.name === name)[0]
+      this.pageShow = "buy"
+      console.log(this.buyAgent)
+    }
   },
   created() {
     this.getData();
