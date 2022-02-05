@@ -134,8 +134,10 @@ export default {
       try {
         let response = await fetch("https://valorant-api.com/v1/agents");
         let data = await response.json()
-        console.log(data.data)
-        this.agents = data.data.map(function(el){
+        data = data.data.filter(el => el.role != null)
+        console.log(data)
+
+        this.agents = data.map(function(el){
           const price = agents.agents.filter((agent) => agent.name === el.displayName)[0].price;
           return {
             name: el.displayName,
