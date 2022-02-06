@@ -20,7 +20,8 @@
         </div>
         <div class="cart-add">
             <div class="buy-area">
-                <button class="add-button">Add to Cart</button>
+              <button class="add-button">Add to Cart</button>
+              <input class="quantity-input" type="number" value=1 min="1"/>
             </div>
         </div>
     </div>
@@ -92,6 +93,7 @@ h5 {
   padding-left: 2rem;
   padding-right: 2rem;
   border-radius: 12px;
+  margin: 5rem;
 }
 
 .back-button{
@@ -104,6 +106,18 @@ h5 {
     margin: 1rem;
 }
 
+.buy-area{
+    border: solid white 1px;
+    border-radius: 12px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.quantity-input{
+  margin: 10rem;
+}
 .agent-name {
   color: white;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -160,11 +174,6 @@ h5 {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
-.buy-area{
-    border: solid white 1px;
-    border-radius: 12px;
-    background-color: white;
-}
 
 
 @media (max-width: 1024px) {
