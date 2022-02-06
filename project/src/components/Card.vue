@@ -2,10 +2,6 @@
   <div v-on:click="buyAgentClick(name)" class="agent-card">
     <h1 class="agent-name">{{ name }}</h1>
     <img class="agent-icon" :src="image" />
-    <h2 class="agent-price">${{ price }}</h2>
-    <button v-on:click="addItem(name, price, image)" class="add-button">
-      Add to Cart
-    </button>
   </div>
 </template>
 
@@ -15,7 +11,6 @@ export default {
   props: {
     name: String,
     image: String,
-    price: Number,
     addItem: Function,
     buyAgentClick: Function,
   },
@@ -35,17 +30,8 @@ export default {
   padding: 2rem;
   padding-left: 3rem;
   padding-right: 3rem;
+  padding-bottom: 4rem;
   border-radius: 1rem;
-}
-
-.add-button {
-  border: none;
-  background-color: black;
-  color: white;
-  padding: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  border-radius: 12px;
 }
 
 .agent-card:hover {
@@ -53,7 +39,7 @@ export default {
 }
 
 @media (max-width: 1325px) {
-  .agent-card{
+  .agent-card {
     padding: 2rem;
     margin: 1.5rem;
   }
@@ -62,7 +48,7 @@ export default {
   .agent-icon {
     width: 10rem;
   }
-  .agent-card{
+  .agent-card {
     padding: 1.5rem;
     margin: 1rem;
   }
@@ -76,11 +62,11 @@ export default {
     margin: 1rem;
   }
 
-  .agent-icon{
+  .agent-icon {
     width: 7rem;
   }
 
-  .add-button{
+  .add-button {
     font-size: 0.75em;
     padding: 1.5rem;
     padding-top: 0.75rem;
@@ -92,7 +78,7 @@ export default {
   .agent-icon {
     width: 6rem;
   }
-  .agent-card{
+  .agent-card {
     padding: 0.75rem;
   }
 }
@@ -102,7 +88,7 @@ export default {
     width: 4rem;
   }
 
-  .agent-card{
+  .agent-card {
     font-size: 0.6em;
   }
 
