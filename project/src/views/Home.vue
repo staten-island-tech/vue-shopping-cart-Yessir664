@@ -135,14 +135,15 @@ export default {
       this.items.forEach(function (el) {
         if (el.name === name) {
           found = true;
-          el.counter += quantity;
+          el.counter += parseInt(quantity);
+          console.log(el.counter)
           el.total = el.price * el.counter;
         }
       });
       if (found === false) {
         this.items.push({
           name: name,
-          counter: quantity,
+          counter: parseInt(quantity),
           total: price,
           price: price,
           image: image,

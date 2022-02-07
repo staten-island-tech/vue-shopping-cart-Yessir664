@@ -37,7 +37,7 @@
             <p class="small-price">00</p>
           </div>
           <button
-            v-on:click="addItem(agent.name, agent.price, agent.icon, quantity)"
+            v-on:click="addItem(agent.name, agent.price, agent.icon, quantity), homeShow(), alertCart()"
             class="add-button"
           >
             Add to Cart
@@ -87,6 +87,9 @@ export default {
       this.abilName = ability.displayName;
       this.displayInfo = ability.description;
     },
+    alertCart: function(){
+      alert("Item added to cart")
+    }
   },
 };
 </script>
@@ -122,6 +125,7 @@ h5 {
   border: none;
   background-color: black;
   color: white;
+  font-size: 75%;
   padding: 1rem;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -170,6 +174,7 @@ h5 {
 .quantity-input {
   margin-bottom: 4rem;
   margin-left: 3px;
+  width: 33%;
 }
 
 .quantity-form {
@@ -245,8 +250,19 @@ h5 {
   .button-img {
     width: 2.5rem;
   }
+
+  .add-button{
+    font-size: 0.6em;
+    margin: 1rem;
+  }
+
+  .buy-area{
+    margin: 0;
+    margin-top: 3rem;
+  }
+
 }
-@media (max-width: 650px) {
+@media (max-width: 800px) {
   .agent-container {
     flex-direction: column;
   }
@@ -270,5 +286,12 @@ h5 {
     margin-left: auto;
     margin: 20px;
   }
+
+  .cart-add{
+    width: 66%;
+    margin: auto;
+    margin-bottom: 1rem;
+  }
+
 }
 </style>
