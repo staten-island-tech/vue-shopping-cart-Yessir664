@@ -21,11 +21,15 @@
             </div>
           </div>
         </div>
-        <img
-          v-on:click="hidden = !hidden"
-          class="nav-item cart-img"
-          src="@/assets/shopping.png"
-        />
+        <div class="cart-div">
+          <div class="counter-show">{{ itemCounter() }}</div>
+          <img
+            v-on:click="hidden = !hidden"
+            class="nav-item cart-img"
+            src="@/assets/shopping.png"
+          />
+        </div>
+        
         <div v-if="!hidden" class="cart-items-container">
           <table v-if="items.length > 0" class="item-table">
             <tr class="table-headers">
@@ -206,6 +210,11 @@ export default {
       this.buyAgent = this.agents.filter((el) => el.name === name)[0];
       this.pageShow = "buy";
     },
+    itemCounter: function(){
+      let counter = 0;
+      this.items.forEach((item) => counter += item.counter)
+      return counter
+    }
   },
   created() {
     this.getData();
@@ -226,6 +235,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  overflow-x: hidden;
 }
 
 button {
@@ -295,6 +305,21 @@ button {
 .cart-img:hover {
   cursor: pointer;
   transform: scale(1.02);
+}
+
+.counter-show{
+  background-color: #fd4556;
+  position: absolute;
+  right: 3%;
+  top: 7%;
+  padding:  0.4rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: 2rem;
+  z-index: 2;
+  color: #ede9e2;
+  font-weight: bold;
+  font-size: 1.2em;
 }
 
 .cart-items-container {
@@ -386,11 +411,14 @@ button {
     margin-top: 1.5rem;
     height: 4rem;
   }
+  .counter-show{
+    top: 5%;
+  }
 }
 
 @media (max-width: 780px) {
   .agents-container {
-    margin: 1rem;
+    margin: 0.2rem;
   }
   .cart-items-container {
     top: 7rem;
@@ -428,6 +456,11 @@ button {
   .nav-item {
     height: 4rem;
   }
+  .counter-show{
+    top: 5.5%;
+    font-size: 0.9em;
+    padding: 0.2rem 0.5rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -443,7 +476,7 @@ button {
     margin-top: 1.75rem;
   }
   .agents-container {
-    margin: 10px;
+    margin: 1px;
   }
 }
 
@@ -453,6 +486,9 @@ button {
     margin-top: 2rem;
   }
 
+  .cart-img{
+    height: 2.5rem;
+  }
   .valorant-logo {
     margin-left: 0.5rem;
   }
@@ -464,24 +500,21 @@ button {
 
 @media (max-width: 475px) {
   .role-button {
-    padding: 0;
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
+    padding: 0 0.3rem;
     font-size: 0.6em;
   }
 }
 
 @media (max-width: 410px) {
-  .role-button {
-    padding: 0;
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
-    font-size: 0.6em;
-  }
   .cart-img {
     height: 2rem;
     margin-right: 1rem;
     margin-top: 2.5rem;
+  }
+
+  .counter-show{
+    right: 2%;
+    top: 6%;
   }
 }
 </style>

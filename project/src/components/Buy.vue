@@ -126,9 +126,7 @@ h5 {
   background-color: black;
   color: white;
   font-size: 75%;
-  padding: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 1rem 2rem;
   border-radius: 12px;
   margin: 3rem;
   margin-top: 1rem;

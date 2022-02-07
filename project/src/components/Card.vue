@@ -90,6 +90,8 @@ export default {
 
   .agent-card {
     font-size: 0.6em;
+    margin: 0.5rem;
+    padding: 1rem;
   }
 
   .add-button {
