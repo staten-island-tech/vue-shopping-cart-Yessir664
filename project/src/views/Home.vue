@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div v-if="pageShow === `home`" class="homepage">
-      <div class="nav">
+      <nav class="nav">
         <div class="nav-left">
           <img
             class="nav-item valorant-logo"
@@ -27,10 +27,11 @@
             v-on:click="hidden = !hidden"
             class="nav-item cart-img"
             src="@/assets/shopping.png"
+            
           />
         </div>
         
-        <div v-if="!hidden" class="cart-items-container">
+        <div v-if="!hidden" class="cart-items-container" v-click-outside="outsideClicked()">
           <table v-if="items.length > 0" class="item-table">
             <tr class="table-headers">
               <th></th>
@@ -77,7 +78,7 @@
           </table>
           <h1 class="no-items" v-else>No items added</h1>
         </div>
-      </div>
+      </nav>
       <div class="agents-container">
         <Card
           v-for="agent in agentDisplay"
@@ -107,10 +108,25 @@
   </div>
 </template>
 <script>
+import Vue from "vue"
 import Card from "@/components/Card.vue";
 import Checkout from "@/components/Checkout.vue";
 import agents from "../assets/agents";
 import Buy from "@/components/Buy.vue";
+
+Vue.directive("click-outside", {
+  bind(el, binding, vnode) {
+    el.clickOutsideEvent = (event) => {
+      if (!(el === event.target || el.contains(event.target))) {
+        vnode.context[binding.expression](event);
+      }
+    };
+    document.body.addEventListener("click", el.clickOutsideEvent);
+  },
+  unbind(el) {
+    document.body.removeEventListener("click", el.clickOutsideEvent);
+  },
+});
 
 export default {
   name: "Home",
