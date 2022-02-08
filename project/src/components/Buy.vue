@@ -236,7 +236,7 @@ h5 {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1600px){
   .agent-img {
     width: 40%;
     margin-top: 10rem;
@@ -255,10 +255,15 @@ h5 {
   }
 
   .buy-area{
+    margin: 1rem;
+    margin-top: 3rem;
+  }
+}
+@media (max-width: 1024px) {
+  .buy-area{
     margin: 0;
     margin-top: 3rem;
   }
-
 }
 @media (max-width: 800px) {
   .agent-container {
