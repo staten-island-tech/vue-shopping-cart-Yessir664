@@ -142,13 +142,14 @@ export default {
           el.counter += parseInt(quantity);
           console.log(el.counter)
           el.total = el.price * el.counter;
+
         }
       });
       if (found === false) {
         this.items.push({
           name: name,
           counter: parseInt(quantity),
-          total: price,
+          total: price*quantity,
           price: price,
           image: image,
         });
