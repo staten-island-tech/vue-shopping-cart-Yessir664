@@ -3,7 +3,7 @@
       <button v-on:click="homeShow()" class="back-button">
         &lt;&lt;Back
       </button>
-    <table class="item-table">
+    <table v-if="items.length > 0" class="item-table">
           <tr class="table-headers">
             <th></th>
             <th class="item-column">Name</th>
@@ -17,6 +17,12 @@
             <th class="item-column">${{ item.price }}</th>
             <th class="item-column">{{ item.counter }}</th>
             <th class="item-column">${{ item.total }}</th>
+            <button
+                  v-on:click="deleteItem(item.name)"
+                  class="delete-button"
+                >
+                  &times;
+            </button>
           </tr>
           <tr>
             <th></th>
@@ -25,7 +31,8 @@
             <th></th>
             <th class="item-column">${{ grandTotal() }}</th>
           </tr>
-        </table>
+      </table>
+      <h1 class="no-items" v-else>No items added</h1>
   </div>
 </template>
 
@@ -36,7 +43,8 @@ export default {
   props: {
     items: Array,
     homeShow: Function,
-    grandTotal: Function
+    grandTotal: Function,
+    deleteItem: Function
   }
 }
 </script>
@@ -67,5 +75,18 @@ export default {
     cursor: pointer;
   }
 
+  .delete-button {
+    border: none;
+    background-color: #d11a2a;
+    border-radius: 100%;
+    color: white;
+    font-size: 1em;
+    margin-top: 3.5rem;
+  }
 
+  .no-items{
+    color: white;
+    display: flex;
+    justify-content: center;
+  }
 </style>

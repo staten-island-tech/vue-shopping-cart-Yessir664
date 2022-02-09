@@ -27,11 +27,10 @@
             v-on:click="hidden = !hidden"
             class="nav-item cart-img"
             src="@/assets/shopping.png"
-            
           />
         </div>
         
-        <div v-if="!hidden" class="cart-items-container" v-click-outside="outsideClicked()">
+        <div v-if="!hidden" class="cart-items-container">
           <table v-if="items.length > 0" class="item-table">
             <tr class="table-headers">
               <th></th>
@@ -97,6 +96,7 @@
       :grandTotal="grandTotal"
       :items="items"
       :homeShow="homeShow"
+      :deleteItem="deleteItem"
     />
     <Buy
       v-if="pageShow === `buy`"
@@ -108,25 +108,11 @@
   </div>
 </template>
 <script>
-import Vue from "vue"
+// import Vue from "vue"
 import Card from "@/components/Card.vue";
 import Checkout from "@/components/Checkout.vue";
 import agents from "../assets/agents";
 import Buy from "@/components/Buy.vue";
-
-Vue.directive("click-outside", {
-  bind(el, binding, vnode) {
-    el.clickOutsideEvent = (event) => {
-      if (!(el === event.target || el.contains(event.target))) {
-        vnode.context[binding.expression](event);
-      }
-    };
-    document.body.addEventListener("click", el.clickOutsideEvent);
-  },
-  unbind(el) {
-    document.body.removeEventListener("click", el.clickOutsideEvent);
-  },
-});
 
 export default {
   name: "Home",
@@ -231,6 +217,12 @@ export default {
       let counter = 0;
       this.items.forEach((item) => counter += item.counter)
       return counter
+    },
+    outsideClicked: function(){
+      if(this.hidden == false){
+        this.hidden = true
+        console.log(this.hidden)
+      }
     }
   },
   created() {
