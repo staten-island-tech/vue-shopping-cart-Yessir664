@@ -39,7 +39,7 @@
 <script>
 
 export default {
-  name: "About",
+  name: "Checkout",
   props: {
     items: Array,
     homeShow: Function,
