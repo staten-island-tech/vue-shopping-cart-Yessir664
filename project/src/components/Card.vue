@@ -1,7 +1,7 @@
 <template>
   <div v-on:click="buyAgentClick(name)" class="agent-card">
     <h1 class="agent-name">{{ name }}</h1>
-    <img class="agent-icon" :src="image" />
+    <img class="agent-icon" :src="image" :alt="name"/>
   </div>
 </template>
 
