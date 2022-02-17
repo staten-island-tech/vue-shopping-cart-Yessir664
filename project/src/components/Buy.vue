@@ -2,7 +2,7 @@
   <div class="buy-container">
     <button v-on:click="homeShow()" class="back-button">&lt;&lt;Back</button>
     <div class="agent-container">
-      <img class="agent-img" :src="agent.portrait" :alt="agent.name"/>
+      <img class="agent-img" :src="agent.portrait" />
       <div class="agent-abilities">
         <div class="agent-role">
           <h4>{{ agent.role.displayName }}</h4>
@@ -10,7 +10,7 @@
         <div class="agent-name">{{ agent.name }}</div>
         <div class="buttons">
           <button v-on:click="infoClick()" class="button">
-            <img class="button-img" :src="agent.role.displayIcon" :alt="agent.role.displayName"/>
+            <img class="button-img" :src="agent.role.displayIcon" />
           </button>
           <button
             class="button"
@@ -18,7 +18,7 @@
             :key="ability.displayName"
             v-on:click="abilClick(ability)"
           >
-            <img class="button-img" :src="ability.displayIcon" :alt="ability.displayName"/>
+            <img class="button-img" :src="ability.displayIcon" />
           </button>
         </div>
         <div class="agent-info-display">
