@@ -29,7 +29,7 @@
             src="@/assets/shopping.png"
           />
         </div>
-        
+
         <div v-if="!hidden" class="cart-items-container">
           <table v-if="items.length > 0" class="item-table">
             <tr class="table-headers">
@@ -142,16 +142,15 @@ export default {
         if (el.name === name) {
           found = true;
           el.counter += parseInt(quantity);
-          console.log(el.counter)
+          console.log(el.counter);
           el.total = el.price * el.counter;
-
         }
       });
       if (found === false) {
         this.items.push({
           name: name,
           counter: parseInt(quantity),
-          total: price*quantity,
+          total: price * quantity,
           price: price,
           image: image,
         });
@@ -213,17 +212,17 @@ export default {
       this.buyAgent = this.agents.filter((el) => el.name === name)[0];
       this.pageShow = "buy";
     },
-    itemCounter: function(){
+    itemCounter: function () {
       let counter = 0;
-      this.items.forEach((item) => counter += item.counter)
-      return counter
+      this.items.forEach((item) => (counter += item.counter));
+      return counter;
     },
-    outsideClicked: function(){
-      if(this.hidden == false){
-        this.hidden = true
-        console.log(this.hidden)
+    outsideClicked: function () {
+      if (this.hidden == false) {
+        this.hidden = true;
+        console.log(this.hidden);
       }
-    }
+    },
   },
   created() {
     this.getData();
@@ -316,12 +315,12 @@ button {
   transform: scale(1.02);
 }
 
-.counter-show{
+.counter-show {
   background-color: #fd4556;
   position: absolute;
   right: 3%;
   top: 7%;
-  padding:  0.4rem;
+  padding: 0.4rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   border-radius: 2rem;
@@ -420,7 +419,7 @@ button {
     margin-top: 1.5rem;
     height: 4rem;
   }
-  .counter-show{
+  .counter-show {
     top: 5%;
   }
 }
@@ -465,7 +464,7 @@ button {
   .nav-item {
     height: 4rem;
   }
-  .counter-show{
+  .counter-show {
     top: 5.5%;
     font-size: 0.9em;
     padding: 0.2rem 0.5rem;
@@ -495,7 +494,7 @@ button {
     margin-top: 2rem;
   }
 
-  .cart-img{
+  .cart-img {
     height: 2.5rem;
   }
   .valorant-logo {
@@ -521,7 +520,7 @@ button {
     margin-top: 2.5rem;
   }
 
-  .counter-show{
+  .counter-show {
     right: 2%;
     top: 6%;
   }
