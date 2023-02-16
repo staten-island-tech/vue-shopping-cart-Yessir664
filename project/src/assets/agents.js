@@ -111,9 +111,6 @@ const agents = [
     icon: "https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/displayicon.png",
     name: "Fade",
     role: "Initator",
-<<<<<<< Updated upstream
-    price: 800,
-=======
     price: 700,
   },
   {
@@ -121,7 +118,6 @@ const agents = [
     name: "Harbor",
     role: "Controller",
     price: 700,
->>>>>>> Stashed changes
   },
 ];
 
