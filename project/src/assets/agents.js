@@ -108,10 +108,20 @@ const agents = [
     price: 700,
   },
   {
-    icon: "https://media.valorant-api.com/agents/add6443a-41bd-e414-f6ad-e58d267f4e95/displayicon.png",
+    icon: "https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/displayicon.png",
     name: "Fade",
     role: "Initator",
+<<<<<<< Updated upstream
     price: 800,
+=======
+    price: 700,
+  },
+  {
+    icon: "https://media.valorant-api.com/agents/95b78ed7-4637-86d9-7e41-71ba8c293152/displayicon.png",
+    name: "Harbor",
+    role: "Controller",
+    price: 700,
+>>>>>>> Stashed changes
   },
 ];
 
