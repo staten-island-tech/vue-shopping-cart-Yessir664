@@ -119,6 +119,12 @@ const agents = [
     role: "Controller",
     price: 700,
   },
+  {
+    icon: "https://media.valorant-api.com/agents/95b78ed7-4637-86d9-7e41-71ba8c293152/displayicon.png",
+    name: "Gekko",
+    role: "Initator",
+    price: 550,
+  },
 ];
 
 export default { agents };
